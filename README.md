@@ -8,4 +8,6 @@
 
 3.AAPT(Android Asset Packaging Tool)会把除/res/raw/目录之外的资源文件编译成二进制格式，包括xml文件；/res/raw/中的文件是资源，可以通过资源id来访问，如R.raw.xxx，但/assets/文件夹下的内容并不算真正意义上的资源，里面的文件不会生成资源id，它支持任意子目录和任意文件，且必须通过文件路径来读取。
 
-4.
+4.Android M新的权限模式（译文）—— [探索新的Android权限模式](http://blog.csdn.net/ahence/article/details/48156485)
+
+5.
