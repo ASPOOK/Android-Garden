@@ -12,4 +12,4 @@
 
 5.关于Android文件存储及读取权限（译文）—— [Android文件存储](http://blog.csdn.net/ahence/article/details/47659263)
 
-6.
+6.Android签名证书的有效期尽可能设置的长一些，建议至少25年；事实上Android仅仅在安装时检测证书的有效期，如果证书到期了，应用程序可以继续运行，只是无法再更新应用程序，唯一的选择是创建另一个具有不同包名的应用。关于如何生存签名证书，请参考 [Android生成keystore](http://blog.csdn.net/ahence/article/details/26583611)
