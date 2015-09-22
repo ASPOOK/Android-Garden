@@ -13,3 +13,8 @@
 5.关于Android文件存储及读取权限（译文）—— [Android文件存储](http://blog.csdn.net/ahence/article/details/47659263)
 
 6.Android签名证书的有效期尽可能设置的长一些，建议至少25年；事实上Android仅仅在安装时检测证书的有效期，如果证书到期了，应用程序可以继续运行，只是无法再更新应用程序，唯一的选择是创建另一个具有不同包名的应用。关于如何生存签名证书，请参考 [Android生成keystore](http://blog.csdn.net/ahence/article/details/26583611)
+
+7.关于Fragment的构造函数
+先附一段来自官方文档的说明：Every fragment must have an empty constructor, so it can be instantiated when restoring its activity's state. It is strongly recommended that subclasses do not have other constructors with parameters, since these constructors will not be called when the fragment is re-instantiated; instead, arguments can be supplied by the caller with setArguments(Bundle) and later retrieved by the Fragment with getArguments().
+大意是说尽可能不要为Fragment创建带参数的构造函数，因为在重新实例化的时候不一定会执行到该函数；如果需要传值建议使用setArguments(Bundle bundle)，之后在Fragment内通过getArguments()获取数据。
+此外还有另一种常用创建Fragment实例的方法，即为Fragment定义一个newInstance()方法，该方法可以附带参数。
