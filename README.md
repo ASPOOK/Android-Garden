@@ -18,3 +18,8 @@
 先附一段来自官方文档的说明：Every fragment must have an empty constructor, so it can be instantiated when restoring its activity's state. It is strongly recommended that subclasses do not have other constructors with parameters, since these constructors will not be called when the fragment is re-instantiated; instead, arguments can be supplied by the caller with setArguments(Bundle) and later retrieved by the Fragment with getArguments().<br/>
 大意是说尽可能不要为Fragment创建带参数的构造函数，因为在重新实例化的时候不一定会执行到该函数；如果需要传值建议使用setArguments(Bundle bundle)，之后在Fragment内通过getArguments()获取数据。<br/>
 此外还有另一种常用创建Fragment实例的方法，即为Fragment定义一个newInstance()方法，该方法可以附带参数。
+
+8.关于AsyncTask,在1.6之前是在单线程上串行执行的；从1.6开始改为在多线程并行执行；坑爹的是从3.0开始又改回在单线程上串行执行。<br/>
+常用方式如下，以达到多线程并行的目的：<br/>
+ExecutorService executor  = (ExecutorService) Executors.newFixedThreadPool(10);<br/>
+task.executeOnExecutor(executor, params);
