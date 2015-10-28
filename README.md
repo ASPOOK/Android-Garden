@@ -23,3 +23,5 @@
 常用方式如下，以达到多线程并行的目的：<br/>
 ExecutorService executor  = (ExecutorService) Executors.newFixedThreadPool(10);<br/>
 task.executeOnExecutor(executor, params);
+
+9.APK反编译后在res文件夹中找不到values文件夹，是因为在打包时res/values目录下的资源文件内容直接写入到资源索引表中（resources.arsc）了
