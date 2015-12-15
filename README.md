@@ -27,3 +27,5 @@ task.executeOnExecutor(executor, params);
 9.APK反编译后在res文件夹中找不到values文件夹，是因为在打包APK时,res/values目录下的资源文件内容经过编译之后直接写入到资源索引表中（resources.arsc）了
 
 10.在一些自定义控件中，如果只能监听到MotionEvent.ACTION_DOWN,而监听不到MotionEvent.ACTION_MOVE和MotionEvent.ACTION_UP,则需要在代码中设置setClickable(true)，或者在布局文件里设置属性：android:clickable="true"
+
+11.Java虚拟机是基于栈（stack-based）的，而Dalvik是基于寄存器(register-based)的，速度相对会更快一些。
