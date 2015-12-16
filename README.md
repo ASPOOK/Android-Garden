@@ -29,3 +29,8 @@ task.executeOnExecutor(executor, params);
 10.在一些自定义控件中，如果只能监听到MotionEvent.ACTION_DOWN,而监听不到MotionEvent.ACTION_MOVE和MotionEvent.ACTION_UP,则需要在代码中设置setClickable(true)，或者在布局文件里设置属性：android:clickable="true"
 
 11.Java虚拟机是基于栈（stack-based）的，而Dalvik是基于寄存器(register-based)的，速度相对会更快一些。
+
+12.只有在同一个task中的activity才能使用startActivityForResult()传递数据
+
+13.当一个APK被安装到手机时，会将文件放在data/data/<package-name>目录下，实质上就是ZIP的压缩包，之后ART会将其中的dex文件编译成native library，放置在data/dalvik-cache目录下，再次启动App时不会重新编译dex，而是直接加载第一次生成的native library，因此启动速度会加快。
+
