@@ -34,3 +34,22 @@ task.executeOnExecutor(executor, params);
 
 13.当一个APK被安装到手机时，会将文件放在data/data/<package-name>目录下，实质上就是ZIP的压缩包，之后ART会将其中的dex文件编译成native library，放置在data/dalvik-cache目录下，再次启动App时不会重新编译dex，而是直接加载第一次生成的native library，因此启动速度会加快。
 
+14.(1)关于Activity的onSavaInstanceState()回调（摘自[Android Developers](https://developer.android.com/guide/components/activities.html)）——There's no guarantee that onSaveInstanceState() will be called before your activity is destroyed, because there are cases in which it won't be necessary to save the state (such as when the user leaves your activity using the Back button, because the user is explicitly closing the activity). If the system calls onSaveInstanceState(), it does so before onStop() and possibly before onPause().
+
+(2)However, even if you do nothing and do not implement onSaveInstanceState(), some of the activity state is restored by the Activity class's default implementation of onSaveInstanceState(). Specifically, the default implementation calls the corresponding onSaveInstanceState() method for every View in the layout, which allows each view to provide information about itself that should be saved. Almost every widget in the Android framework implements this method as appropriate, such that any visible changes to the UI are automatically saved and restored when your activity is recreated. For example, the EditText widget saves any text entered by the user and the CheckBox widget saves whether it's checked or not. **The only work required of you is to provide a unique ID (with the android:id attribute) for each widget you want to save its state. If a widget does not have an ID, then the system cannot save its state.**
+
+(3)Because onSaveInstanceState() is not guaranteed to be called, you should use it only to record the transient state of the activity (the state of the UI)—you should never use it to store persistent data. Instead, you should use onPause() to store persistent data (such as data that should be saved to a database) when the user leaves the activity.
+
+(4）当Activity A启动Activity B时的生命周期：
+
+<1>Activity A's onPause() method executes.
+
+<2>Activity B's onCreate(), onStart(), and onResume() methods execute in sequence. (Activity B now has user focus.)
+
+<3>Then, if Activity A is no longer visible on screen, its onStop() method executes.
+
+This predictable sequence of lifecycle callbacks allows you to manage the transition of information from one activity to another. For example, **if you must write to a database when the first activity stops so that the following activity can read it, then you should write to the database during onPause() instead of during onStop().**
+
+15.
+
+
