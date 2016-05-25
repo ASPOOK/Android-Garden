@@ -50,6 +50,36 @@ task.executeOnExecutor(executor, params);
 
 This predictable sequence of lifecycle callbacks allows you to manage the transition of information from one activity to another. For example, **if you must write to a database when the first activity stops so that the following activity can read it, then you should write to the database during onPause() instead of during onStop().**
 
-15.
+15.Handling Runtime Changes
 
+- Retain an object during a configuration change
 
+使用Framgment保存数据，在Fragment的onCreate中调用setRetainInstance(true)，当发生配置改变，Activity销毁时利用Fragment保存数据，当Activity重建后，从Fragment中恢复数据。
+
+- Handle the configuration change yourself
+
+利用如下配置阻止Activity重建
+
+    <activity android:name=".MyActivity"
+        android:configChanges="orientation|keyboardHidden|screenSize"
+        android:label="@string/app_name">
+
+并响应 onConfigurationChanged()回调，做一些需要的逻辑：
+
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+    
+        // Checks the orientation of the screen
+        if (newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE) {
+            Toast.makeText(this, "landscape", Toast.LENGTH_SHORT).show();
+        } else if (newConfig.orientation == Configuration.ORIENTATION_PORTRAIT){
+            Toast.makeText(this, "portrait", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+注意参数里面的Configuration是当前的状态配置，而不是改变前的配置。
+
+参考：[Handling Runtime Changes](https://developer.android.com/guide/topics/resources/runtime-changes.html#RetainingAnObject)
+
+16.
