@@ -98,4 +98,12 @@ Android系统启动过程的最后一步是启动一个Home应用程序，用来
 
 解决方案：避免混淆该包装类。
 
-18.
+18.Mac上Android Studio使用adb命令
+
+adb环境变量设置：
+
+（1）在Terminal输入以下命令：open -e .bash_profile
+
+（2)回车打开 .bash_profile文件，之前没配置过应该是空白的，输入export PATH=${PATH}:~/Library/Android/sdk/tools:~/Library/Android/sdk/platform-tools，这两个路径是tools和platform-tools在个人电脑上的位置，根据自己电脑SDK下tools和platform-tools的路径替换下，保存。
+
+（3）再输adb shell就ok了
