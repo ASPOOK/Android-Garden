@@ -107,3 +107,16 @@ adb环境变量设置：
 （2)回车打开 .bash_profile文件，之前没配置过应该是空白的，输入export PATH=${PATH}:~/Library/Android/sdk/tools:~/Library/Android/sdk/platform-tools，这两个路径是tools和platform-tools在个人电脑上的位置，根据自己电脑SDK下tools和platform-tools的路径替换下，保存。
 
 （3）再输adb shell就ok了
+
+19.Android WebView打开http与https混用的网页
+需要使用如下方法:
+
+WebSettings.setMixedContentMode(int mode)  **Added in API level 21**
+
+    void setMixedContentMode (int mode)
+
+Configures the WebView's behavior when a secure origin attempts to load a resource from an insecure origin. By default, apps that target KITKAT or below default to MIXED_CONTENT_ALWAYS_ALLOW. Apps targeting LOLLIPOP default to MIXED_CONTENT_NEVER_ALLOW. The preferred and most secure mode of operation for the WebView is MIXED_CONTENT_NEVER_ALLOW and use of MIXED_CONTENT_ALWAYS_ALLOW is strongly discouraged.
+
+Parameters
+mode	int: The mixed content mode to use. One of `MIXED_CONTENT_NEVER_ALLOW`, `MIXED_CONTENT_ALWAYS_ALLOW` or `MIXED_CONTENT_COMPATIBILITY_MODE`.
+
